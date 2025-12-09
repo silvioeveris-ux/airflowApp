@@ -3,7 +3,7 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 def extrair_dados():
-    # Simula extração de dados
+    # Simula extração de dado
     print("Extraindo dados da fonte...")
     return {'compras': 200, 'artefatos': 200}
 

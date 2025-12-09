@@ -20,7 +20,7 @@ dag = DAG(
     'luccasEx02',
     default_args=default_args,
     description='A simple DAG that creates and transforms synthetic data',
-    schedule_interval='* * /3 * *',
+    schedule_interval='* /72 * * *',
     catchup=False,
 )
 

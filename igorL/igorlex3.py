@@ -29,7 +29,7 @@ def insert_row(row_index, **context):
 
 # Define DAG
 with DAG(
-    dag_id='EX3',
+    dag_id='IgorLEX3',
     start_date=datetime(2024, 1, 1),
     schedule_interval=None,
     catchup=False,

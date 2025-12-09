@@ -29,7 +29,7 @@ def insert_row(row_index, **context):
 
 # Define DAG
 with DAG(
-    dag_id='igoranjos3',
+    dag_id='igoranjos_ex3',
     start_date=datetime(2024, 1, 1),
     schedule_interval=None,
     catchup=False,
@@ -44,7 +44,7 @@ with DAG(
 
     # Tasks 2-6: Insert each row
     insert_tasks = []
-    for i in range(5):
+    for i in range(10):
         insert_task = PythonOperator(
             task_id=f'insert_row_{i}',
             python_callable=insert_row,

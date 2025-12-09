@@ -19,7 +19,7 @@ default_args = {
 dag = DAG(
     'hellen ex2',
     default_args=default_args,
-    description='A simple DAG that creates and transforms synthetic data',
+    description='A simple DAG that creates aSnd transforms synthetic data',
     schedule_interval=timedelta(days=3),
     catchup=False,
 )

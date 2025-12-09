@@ -20,7 +20,7 @@ dag = DAG(
     'fred2',
     default_args=default_args,
     description='A simple DAG that creates and transforms synthetic data',
-    schedule_interval=timedelta(days=2),
+    schedule_interval=timedelta(days=3),
     catchup=False,
 )
 

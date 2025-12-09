@@ -17,9 +17,9 @@ default_args = {
 
 # Initialize the DAG
 dag = DAG(
-    'igoranjos2',
+    'IgorLEX2',
     default_args=default_args,
-    description='A simple DAG that creates and transforms synthetic data',
+    description='A simple DAG that creates and t ransforms synthetic data',
     schedule_interval=timedelta(days=3),
     catchup=False,
 )
@@ -35,7 +35,6 @@ def create_synthetic_data(**context):
         'purchase_amount': np.random.uniform(10, 500, n_records).round(2),
         'items_purchased': np.random.randint(1, 20, n_records),
         'region': np.random.choice(['North', 'South', 'East', 'West'], n_records),
-        'customer_name': 'Igor Anjos'
     }
 
     df = pd.DataFrame(data)
@@ -74,12 +73,13 @@ def analyze_data(**context):
         'avg_purchase_amount': df['purchase_amount'].mean().round(2),
         'high_value_customers': df['is_high_value'].sum(),
         'customers_by_region': df['region'].value_counts().to_dict(),
+        'name':'igorL',
     }
 
     print("Analysis Summary:")
     for key, value in summary.items():
         print(f"{key}: {value}")
-    df.to_csv('/tmp/igoranjos2.csv')
+    df.to_csv('/tmp/igorl.csv')
 
 # Define tasks
 create_data_task = PythonOperator(

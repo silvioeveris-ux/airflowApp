@@ -1,3 +1,45 @@
+# 360522 - Anderson Costa da Silva
+
+### Exercise 1
+```python
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime, timedelta
+
+def extrair_dados():
+    # Simula extração de dados
+    print("Extraindo dados da fonte...")
+    return {'compras': 200, 'artefatos': 200}
+
+def transformar_dados(**context):
+    dados = context['ti'].xcom_pull(task_ids='extrair')
+    # Processa os dados
+    dados['total'] = dados['compras'] + dados['artefatos']
+    return dados
+
+def carregar_dados(**context):
+    dados = context['ti'].xcom_pull(task_ids='transformar')
+    print(f"Carregando dados: {dados}")
+
+with DAG(
+    'DAG_ANDERSON',
+    default_args={'retries': 2},
+    start_date=datetime(2024, 1, 1),
+    schedule_interval='*/2 * * * *',
+    catchup=False
+) as dag:
+
+    t1 = PythonOperator(task_id='extrair', python_callable=extrair_dados)
+    t2 = PythonOperator(task_id='transformar', python_callable=transformar_dados)
+    t3 = PythonOperator(task_id='carregar', python_callable=carregar_dados)
+
+    t1 >> t2 >> t3
+```
+
+---
+
+### Exercise 2
+```python
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
@@ -17,7 +59,7 @@ default_args = {
 
 # Initialize the DAG
 dag = DAG(
-    'igoranjos2',
+    'ANDERSON_EX2',
     default_args=default_args,
     description='A simple DAG that creates and transforms synthetic data',
     schedule_interval=timedelta(days=3),
@@ -35,7 +77,7 @@ def create_synthetic_data(**context):
         'purchase_amount': np.random.uniform(10, 500, n_records).round(2),
         'items_purchased': np.random.randint(1, 20, n_records),
         'region': np.random.choice(['North', 'South', 'East', 'West'], n_records),
-        'customer_name': 'Igor Anjos'
+        'customer_name': np.random.choice(['Fulano', 'Cicrano', 'Beltrano'], n_records),
     }
 
     df = pd.DataFrame(data)
@@ -79,7 +121,7 @@ def analyze_data(**context):
     print("Analysis Summary:")
     for key, value in summary.items():
         print(f"{key}: {value}")
-    df.to_csv('/tmp/igoranjos2.csv')
+    df.to_csv('/tmp/bd100_anderson_2.csv')
 
 # Define tasks
 create_data_task = PythonOperator(
@@ -102,3 +144,4 @@ analyze_data_task = PythonOperator(
 
 # Set task dependencies
 create_data_task >> transform_data_task >> analyze_data_task
+```

@@ -18,7 +18,7 @@ def carregar_dados(**context):
     print(f"Carregando dados: {dados}")
 
 with DAG(
-    'GUSTAVO_DAG',
+    'GUSTAVO_DAG_EX0',
     default_args={'retries': 2},
     start_date=datetime(2024, 1, 1),
     schedule_interval='*/2 * * * *',

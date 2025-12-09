@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 def extrair_dados():
     # Simula extração de dados
     print("Extraindo dados da fonte...")
-    return {'compras': 300, 'artefatos': 300}
+    return {'compras': 200, 'artefatos': 200}
 
 def transformar_dados(**context):
     dados = context['ti'].xcom_pull(task_ids='extrair')

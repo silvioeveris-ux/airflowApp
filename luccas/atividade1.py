@@ -3,9 +3,9 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 def extrair_dados():
-    # Simula extração de dados
+    # Simula extração de dado
     print("Extraindo dados da fonte...")
-    return {'compras': 300, 'artefatos': 300}
+    return {'compras': 200, 'artefatos': 200}
 
 def transformar_dados(**context):
     dados = context['ti'].xcom_pull(task_ids='extrair')
@@ -18,10 +18,10 @@ def carregar_dados(**context):
     print(f"Carregando dados: {dados}")
 
 with DAG(
-    'igoranjos',
+    'luccas',
     default_args={'retries': 2},
     start_date=datetime(2024, 1, 1),
-    schedule_interval='*/1 * * * *',
+    schedule_interval='*/2 * * * *',
     catchup=False
 ) as dag:
 

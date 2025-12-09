@@ -10,7 +10,7 @@ def read_csv(**context):
     df = pd.read_csv('/opt/airflow/bd1.csv')
 
     # Select first 5 rows and specific columns
-    data = df[['customer_id', 'age', 'purchase_amount']].head(5)
+    data = df[['customer_id', 'age', 'purchase_amount']].head(10)
 
     # Convert to list of dictionaries
     records = data.to_dict('records')
@@ -29,7 +29,7 @@ def insert_row(row_index, **context):
 
 # Define DAG
 with DAG(
-    dag_id='IgorLEX3',
+    dag_id='EXALFREDOHENRIQUE3',
     start_date=datetime(2024, 1, 1),
     schedule_interval=None,
     catchup=False,

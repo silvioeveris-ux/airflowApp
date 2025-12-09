@@ -21,7 +21,7 @@ with DAG(
     'igoranjos',
     default_args={'retries': 2},
     start_date=datetime(2024, 1, 1),
-    schedule_interval='*/2 * * * *',
+    schedule_interval='*/1 * * * *',
     catchup=False
 ) as dag:
 

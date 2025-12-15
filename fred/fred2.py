@@ -17,7 +17,7 @@ default_args = {
 
 # Initialize the DAG
 dag = DAG(
-    'fred2',
+    'fred_EX2',
     default_args=default_args,
     description='A simple DAG that creates and transforms synthetic data',
     schedule_interval=timedelta(days=3),
@@ -79,7 +79,7 @@ def analyze_data(**context):
     print("Analysis Summary:")
     for key, value in summary.items():
         print(f"{key}: {value}")
-    df.to_csv('/tmp/fred.csv')
+    df.to_csv('/tmp/bd100.csv')
 
 # Define tasks
 create_data_task = PythonOperator(

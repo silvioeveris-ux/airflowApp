@@ -17,7 +17,7 @@ default_args = {
 
 # Initialize the DAG
 dag = DAG(
-    'joselima_ex2',
+    'bruna_ex2',
     default_args=default_args,
     description='A simple DAG that creates and transforms synthetic data',
     schedule_interval=timedelta(days=3),
